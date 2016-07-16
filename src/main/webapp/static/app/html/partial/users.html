@@ -1,0 +1,41 @@
+<h2>Users</h2>
+<input type="text" ng-model="search"/>
+<button ng-click="getAll()">Search</button>
+<button ng-click="search=null;getAll();">Reset</button>
+
+<table border="3" ng-init="getAll()" class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>e-mail</th>
+            <th colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.email}}</td>
+            <td><button ng-click="remove(user.id)" class="btn btn-danger btn-xs">Delete</button></td>
+            <td><a href="/#/users/edit/{{user.id}}" class="btn btn-warning btn-xs">Edit Account</a></td> 
+        </tr>
+    </tbody>
+</table><br/>
+<a href="/#/users/registration" class="btn btn-success">Registration</a>
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<span ng-hide="hideSpinner" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+		<div ng-show="showError" class="alert alert-danger" role="alert"><b>Ooops</b>, something went wrong :)</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 text-right">
+		<button ng-click="page=page-1; getAll();" ng-disabled="page==0" class="btn btn-default">Previous</button>
+		<span>{{page+1}}/{{totalPages}}</span>
+		<button ng-click="page=page+1; getAll();" ng-disabled="page==totalPages-1" class="btn btn-default">Next</button>
+	</div>
+</div>

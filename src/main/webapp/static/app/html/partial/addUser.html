@@ -1,0 +1,27 @@
+<h3>Registration Page</h3>
+
+<form ng-init="init()">
+    <table class="table table-striped">
+        <tr>
+            <td>First name</td>
+            <td><input type="text" ng-model="user.firstname"></td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td><input type="text" ng-model="user.lastname"></td>
+        </tr>
+        <tr>
+            <td>e-mail</td>
+            <td><input type="email" ng-model="user.email"></td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td><input type="password" ng-model="user.password"></td>
+        </tr>
+        <tr>
+            <td>password confirm</td>
+            <td><input type="password" ng-model="user.passwordConfirm"></td>
+        </tr>
+    </table>
+    <button ng-click="save()" class="btn btn-danger btn-xl">Register new user</button>
+</form>

@@ -1,0 +1,41 @@
+<h2>Activities</h2>
+<input type='text' ng-model="search" />
+<button ng-click="getAll()">Search</button>
+<button ng-click="search=null;getAll()">Reset</button>
+
+<table ng-init="page=0;getAll();" class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="activity in activities">
+			<td>{{ activity.id }}</td>
+			<td>{{ activity.name }}</td>
+			<td>
+				<button ng-click="remove(activity.id)" class="btn btn-danger btn-xs">Delete</button>
+				<a href="/#/activities/edit/{{ activity.id }}" class="btn btn-warning btn-xs">Edit</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<span ng-hide="hideSpinner" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+		<div ng-show="showError" class="alert alert-danger" role="alert"><b>Ooops</b>, something went wrong :)</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 text-right">
+		<button ng-click="page=page-1; getAll();" ng-disabled="page==0" class="btn btn-default">Previous</button>
+		<span>{{page+1}}/{{totalPages}}</span>
+		<button ng-click="page=page+1; getAll();" ng-disabled="page==totalPages-1" class="btn btn-default">Next</button>
+	</div>
+</div>
+
+<a href="/#/activities/add" class="btn btn-success">Add new activity</a>
